@@ -3,17 +3,12 @@ layout: lesson
 root: .
 ---
 
-This lesson shows how to use the
-[Software Carpentry]({{ site.swc_site }}) and
-[Data Carpentry]({{ site.dc_site }}) lesson template.
-For guidelines on how to help improve our lessons and this template,
-please see [the contribution guidelines][contributing];
-for guidelines on how to set up your machine to preview changes locally,
-please see [the setup instructions]({{ page.root }}/setup/).
+Esta lección consiste en un viaje de introducción a algunos conceptos básicos del lenguaje C++, en torno a una tarea concreta: servir como toma de contacto a este lenguaje para matemáticos y científicos.
 
-> ## Prerequisites
->
-> Use the `.prereq` style to specify prerequisites.
+> ## Prerequisitos
+> Los seguidores del curso deberán poseer algunos conocimientos
+> básicos del lenguaje C. O, como mínimo, de la programación usando
+> lenguajes compilados como Fortran o Pascal.
 {: .prereq}
 
 > ## Ten Things You Need To Know
