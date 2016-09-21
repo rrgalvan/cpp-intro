@@ -44,6 +44,9 @@ $color-testimonial: #fc8dc1 !default;
 .python { @include cdSetup($color-source); }
 .r      { @include cdSetup($color-source); }
 .sql    { @include cdSetup($color-source); }
+.c      { @include cdSetup($color-source); }
+.cpp    { @include cdSetup($color-source); }
+.fortran { @include cdSetup($color-source); }
 
 //----------------------------------------
 // Specialized blockquote environments for learning objectives, callouts, etc.
