@@ -9,7 +9,7 @@ Esta lección consiste en un viaje de introducción a algunos conceptos básicos
 > Los seguidores del curso deberán poseer algunos conocimientos
 > básicos del lenguaje C, o bien (como mínimo) de programación usando
 > lenguajes compilados como Fortran o Pascal. Además, serán necesarios
-> unos conceptos mínimos de la shell UNIX.
+> unos conceptos mínimos de la shell UNIX (creación y edición de ficheros).
 {: .prereq}
 
 
