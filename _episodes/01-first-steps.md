@@ -52,16 +52,17 @@ el texto "¡Hola mundo!" seguido por un carácter de fin de línea `std::endl`.
 > ## El espacio de nombres estándar
 >
 > - La expresión `std::` en el programa anterior especifica *de forma explícita* que el nombre `cout` se puede encontrar en el espacio de nombres de la biblioteca estándar (y lo mismo para `endl`). Esta biblioteca contiene muchos otros objetos y funciones interesantes, algunos de los cuales se detallarán más adelante.
-> - Todo espacio de nombres puede usarse, además, *de forma implícita* mediante la orden `using namespace`. Por ejemplo, el programa anterior es equivalente al siguiente:
+> - Todo espacio de nombres puede usarse, además, *de forma implícita* mediante la orden `using namespace`. Por ejemplo, el programa anterior es equivalente al siguiente (nota: C++ usa `//` para comentarios):
 >
 > ~~~
 > #include <iostream>
-> using namespace std
+> using namespace std // Los nombres de std serán visibles sin std::
 > int main(int argc, char** argv)
 > {
 >  cout << "¡Hola mundo!" << endl;
 > }
 > ~~~
+>  Como se puede observar en C++ se usa `//` para los comentarios
 > {: .cpp}
 {: .discussion}
 
@@ -130,6 +131,8 @@ obteniendo el siguiente resultado:
 > {: .output}
 
 ## Tipos de datos, variables, funciones y aritmética
+
+Como se puede ver en los siguientes ejemplos, la sintaxis básica de C++ está basada en C con algunas extensiones.
 
 
 
