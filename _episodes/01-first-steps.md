@@ -1,14 +1,12 @@
 ---
-title: "Lesson Design"
+title: "Primeros Pasos"
 teaching: 10
 exercises: 0
 questions:
-- "How do we design lessons?"
+- "¿Cómo creo, compilo y ejecuto mi primer programa en C++?"
 objectives:
-- "Describe the reverse instructional design process."
-- "Describe the purpose and implementation of formative assessments."
-keypoints:
-- "Lessons are design in four stages: conceptual, summative, formative, and connective."
+- "Conocer la sintaxis de C++ para imprimir información en la consola"
+- "Ser capaz de ejecutar y compilar este programa"
 training: http://swcarpentry.github.io/instructor-training
 ---
 
