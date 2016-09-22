@@ -5,7 +5,7 @@ exercises: 5
 questions:
 - "¿Cómo creo, compilo y ejecuto mi primer programa en C++?"
 objectives:
-- "Conocer la sintaxis de C++ para imprimir información en la consola"
+- "Utilizar la sintaxis básica de C++, esencialmente basada en el lenguaje C"
 - "Ser capaz de crear, compilar y ejecutar este programa"
 keypoints:
 - "La sintaxis de C++ es similar a la del lenguaje C (a la que extiende)"
