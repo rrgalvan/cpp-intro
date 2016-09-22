@@ -169,6 +169,7 @@ La sintaxis básica de C++ está basada en C con algunas extensiones, como muest
 {: .callout}
 
 El resultado debe ser el siguiente:
+
 > ~~~
 > The square of 1 is: 1
 > The square of 2 is: 4
@@ -183,6 +184,7 @@ Hola, probando \LaTeX: $f(x)$
 $$
 \alpha
 $$
+
 
 Ahí va otra
 $$
