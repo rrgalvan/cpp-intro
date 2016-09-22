@@ -1,12 +1,12 @@
 ---
-title: "GitHub, Markdown, and Jekyll"
+title: "Using C++ Objects: Vectors"
 teaching: 10
 exercises: 0
 questions:
-- "How are pages published?"
+- "How can I create a vector of real numbers in C++?"
 objectives:
-- "Explain how GitHub Pages produce web sites from Git repositories."
-- "Explain Jekyll's formatting rules."
+- "Introduce C++ classes and objects."
+- "Create and manipulate vector objects from the standard library."
 keypoints:
 - "Lessons are stored in Git repositories on GitHub."
 - "Lessons are written in Markdown."
