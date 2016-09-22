@@ -1,6 +1,6 @@
 ---
 title: "First Steps"
-teaching: 10
+teaching: 15
 exercises: 2
 questions:
 - "¿Cómo creo, compilo y ejecuto mi primer programa en C++?"
@@ -130,6 +130,46 @@ obteniendo el siguiente resultado:
 > ~~~
 > {: .output}
 
+>
+> ## Otras opciones de compilación
+>
+> El compilador `g++` admite muchas otras opciones, entre ellas:
+>
+> - `-l`: Utilizar una biblioteca
+> - `-I`: Explicitar un directorio desde donde incluir ficheros
+> - `-Wall`: Al compilar, mostrar tanos mensajes de aviso (*warnings*) como sea posible (para poder localizar posibles errores).
+>
+> Por ejemplo, consideremos el siguiente programa, al que llamaremos `ejemplo2.cpp`
+>
+> ~~~
+> #include <iostream>
+> #include <cmath> // Biblioteca matemática de C
+> int main()
+> {
+>   // Declaramos dos números en doble precisión.
+>   double x, y=3; // A y le asignamos un valor
+>   std::cout << "La raíz de " << y << " es " << sqrt(y) << std::endl;
+> }
+> ~~~
+> {: .cpp}
+>
+> En él se calcula la raíz de *y=3*. Se declara una variable, *x*, que no se utiliza, lo que podría ser un indicio de errores en futuras versiones.
+> Si compilamos con la opción `-Wall`, el compilador nos advertirá de este heho:
+>
+> ~~~
+> g++ -Wall ejemplo1 -o ejemplo1
+> ~~~
+> {: .cpp}
+>
+> ~~~
+> math.cpp: In function ‘int main()’:
+> math.cpp:7:10: warning: unused variable ‘x’ [-Wunused-variable]
+>    double x, y=3; // A y le asignamos un valor
+>           ^
+> ~~~
+> {: .output}
+{: .discussion}
+
 ## Tipos de datos, variables, funciones y aritmética
 
 La sintaxis básica de C++ está basada en C con algunas extensiones, como muestran el siguiente ejemplos. Para conocer más detalles, puede consultarse un tutorial como el contenido en el capítulo 2 de [[B. Stroustrup (4th edition)]]
@@ -155,9 +195,9 @@ La sintaxis básica de C++ está basada en C con algunas extensiones, como muest
 >
 > int main()
 > {
->   int numberOfSquares = 5;
+>   int nSquares = 5;
 >   double x=1;
->   for (int i=0; i<numberOfSquares; i++)
+>   for (int i=0; i<nSquares; i++)
 >     {
 >       print_square(x);
 >       x = x+1;
@@ -179,25 +219,11 @@ El resultado debe ser el siguiente:
 > ~~~
 > {: .output}
 
-Hola, probando \LaTeX: $f(x)$
-
-$$
-\alpha
-$$
-
-
-Ahí va otra
-$$
-f(x)=\sqrt{x^2+1}
-$$
-
-Fin
-
 > ## Variantes del programa anterior
 >
-> Ejercicio: programar una variante del programa anterior que:
+> Programar una variante del programa anterior que:
 >
-> - Sustituya la función `square` por $$f(x)=\sqrt{x^2+1}$$
+> - Sustituya la función `square` por $$f(x)=\cos(x^2+1)r$$
 > - Sustituya el bucle `for` por un bucle `while`
 >
 {: .challenge}
