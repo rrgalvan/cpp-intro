@@ -132,14 +132,68 @@ obteniendo el siguiente resultado:
 
 ## Tipos de datos, variables, funciones y aritmética
 
-Como se puede ver en los siguientes ejemplos, la sintaxis básica de C++ está basada en C con algunas extensiones.
+La sintaxis básica de C++ está basada en C con algunas extensiones, como muestran el siguiente ejemplos. Para conocer más detalles, puede consultarse un tutorial como el contenido en el capítulo 2 de [[B. Stroustrup (4th edition)]]
 
+> ## Un ejemplo más extenso
+> En el siguiente ejemplo se muestra un programa C++ que define dos funciones y, utilizándolas junto a un bucle *for*, las aplica a un rango de valores
+>
+> ~~~
+> #include <iostream>
+>
+> // Calculate the square of double precision floating-point number
+> double square(double x)
+> {
+>   return x*x;
+> }
+>
+> // Print a formated string showing the square of x
+> void print_square(double x)
+> {
+>   std::cout << "The square of " << x
+> 	    << " is: " << square(x) << std::endl;
+> }
+>
+> int main()
+> {
+>   int numberOfSquares = 5;
+>   double x=1;
+>   for (int i=0; i<numberOfSquares; i++)
+>     {
+>       print_square(x);
+>       x = x+1;
+>     }
+> }
+>
+> ~~~
+> {: .cpp}
+{: .callout}
 
+El resultado debe ser el siguiente:
+> ~~~
+> The square of 1 is: 1
+> The square of 2 is: 4
+> The square of 3 is: 9
+> The square of 4 is: 16
+> The square of 5 is: 25
+> ~~~
+> {: .output}
 
-[Code::Blocks]: http://www.codeblocks.org/
+$f(x)$
+
+> ## Variantes del programa anterior
+>
+> Ejercicio: programar una variante del programa anterior que:
+>
+> - Sustituya la función `square` por $$f(x)=\sqrt{x^2+1}$$
+> - Sustituya el bucle `for` por un bucle `while`
+>
+{: .challenge}
+
+[Code::Blocks]: http://www.codeblocks.org
 [Eclipse]: [Code::Blocks] http://www.eclipse.org/downloads/packages/eclipse-ide-cc-developers/marsr
-[Emacs]: https://www.gnu.org/software/emacs/
-[Vim]: http://www.vim.org/
-[Vi]: http://www.vim.org/
-[Nano]: https://www.nano-editor.org/
+[Emacs]: https://www.gnu.org/software/emacs
+[Vim]: http://www.vim.org
+[Vi]: http://www.vim.org
+[Nano]: https://www.nano-editor.org
 [GCC]: http://gcc.gnu.org
+[B. Stroustrup (4th edition)]: http://www.stroustrup.com/4th.html
