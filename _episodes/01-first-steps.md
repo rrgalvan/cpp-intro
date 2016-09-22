@@ -178,7 +178,18 @@ El resultado debe ser el siguiente:
 > ~~~
 > {: .output}
 
-$f(x)$
+Hola, probando \LaTeX: $f(x)$
+
+$$
+\alpha
+$$
+
+Ahí va otra
+$$
+f(x)=\sqrt{x^2+1}
+$$
+
+Fin
 
 > ## Variantes del programa anterior
 >
