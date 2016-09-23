@@ -5,8 +5,9 @@ exercises: 0
 questions:
 - "How can I create a vector of real numbers in C++?"
 objectives:
-- "Introduce C++ classes and objects."
-- "Create and manipulate vector objects from the standard library."
+- "Introduce C++ classes and objects"
+- "Create and manipulate vector objects from the standard library"
+- "Be aware of the strengths and limitations of these vector objects"
 keypoints:
 - "Lessons are stored in Git repositories on GitHub."
 - "Lessons are written in Markdown."
@@ -16,160 +17,106 @@ keypoints:
 - "Groups of files are stored in collection directories whose names begin with an underscore."
 ---
 
-This episode describes the tools we use to build and manage lessons.
-These simplify many tasks, but make other things more complicated.
+Este episodio se centra en la creación y manipulación de objetos de tipo *vector*, que son instanciados a partir de la clase `std::vector` (contenida en la biblioteca estándar de C++).
 
-## Repositories on GitHub
+## Clases y objetos
 
-Our lessons are stored in Git repositories (or "repos") on GitHub.
-We use the term *fork* to mean "a copy of a GitHub-hosted repo that is also hosted on GitHub"
-and the term *clone* to mean "a copy of a GitHub-hosted repo that's located on someone else's machine".
-In both cases,
-the duplicate has a reference that points to the original repo.
+Los conceptos básicos en C++ son: *funciones* y *clases*
 
-In an ideal world,
-we would put all of the common files used by our lessons
-(such as the CSS style files and the image files with project logos)
-in a template repo.
-The master copy of each lesson would be a fork of that repo,
-and each author's working copy would be a fork of that master:
+- Las **funciones** en C++, como en la mayor parte de los lenguajes de programación (C, Fortran, Java,...), son abstracciones de algoritmos. Reciben una serie de argumentos de entrada y, a través de una serie de instrucciones que implementan un algoritmo, devuelven (eventualmente) un argumento de salida. Las funciones permiten emplear en C++ el paradigma de la *programación modular*.
 
-![Forking Repositories]({{ page.root }}/fig/forking.svg)
+- Las **clases** en C++ son abstracciones que encapsulan...
 
-However, GitHub only allows a user to have one fork of any particular repo.
-This creates a problem for us because an author may be involved in writing several lessons,
-each with its own repo.
-We therefore use [GitHub Importer][github-importer] to create new lessons.
-After the lesson has been created,
-we manually add the [template repository]({{ site.template_repo }}) as a remote called `template`
-to update the lesson when the template changes.
+  - *datos* (también llamados *atributos*) y
+  - *métodos* (funciones que operan sobre esos datos).
 
-![Repository Links]({{ page.root }}/fig/repository-links.svg)
+Con frecuencia, los atributos son privados y solamente se puede acceder a ellos a través de los métodos que, a tal efecto, dispone la clase.
 
-## GitHub Pages
+Las clases permiten emplear en C++ el paradigma de la *programación orientada a objetos*. Un **objeto** en C++ consiste simplemente en una variable que viene dada como representación concreta de una clase.
+Existen unos métodos, llamados *constructores*, que están especializados en crear nuevos objetos
 
-If a repository has a branch called `gh-pages` (short for "GitHub Pages"),
-GitHub publishes its content to create a website for the repository.
-If the repository's URL is `https://github.com/USERNAME/REPOSITORY`,
-the website is `https://USERNAME.github.io/REPOSITORY`.
+Para conocer más detalles sobre la forma de crear nuevas clases véase, por ejemplo, la sección 2.3 de [[B. Stroustrup (4th edition)]].
 
-GitHub Pages sites can include static HTML pages,
-which are published as-is,
-or they can use [Jekyll][jekyll] as described below
-to compile HTML and/or Markdown pages with embedded directives
-to create the pages for display.
+## La clase `vector` de la biblioteca estándar
+La biblioteca estándar de C++ contiene diversas clases que pueden usarse como *contenedores* de datos. Una de ellas, en las que nos centraremos aquí, es la clase `vector`, que es utilizaremos para sustituir a los *arrays* de C.
 
-> ## Why Doesn't My Site Appear?
+Para acceder a ella, basta usar:
+
+~~~
+#include <vector>
+~~~
+{: .cpp}
+
+Sabiendo que está situada dentro de la biblioteca estándar, podremos construir objetos de esta clase. Por ejemplo, la siguiente línea construye un vector de números en doble precisión.
+
+~~~
+std::vector<double> u;
+~~~
+{: .cpp}
+
+En principio, el vector anterior no contiene ningún elemento. Existe la posibilidad de especificar el número de elementos en el momento de la construcción:
+
+~~~
+std::vector<double> v(2); // Vector con dos elementos
+~~~
+{: .cpp}
+
+Ahora podemos utilizar el vector de forma similar a los arrays de C:
+
+~~~
+v[0]=1; v[1]=3.14;
+std::cout << v[0]+v[1] << std::endl;
+~~~
+{: .cpp}
+
+Pero la clase `vector` cuenta con métodos que la dotan de mayor potencia que a los viejos *arrays*. Por ejemplo:
+
+~~~
+int n = v.size(); // Obtener el número de elementos  del vector
+u = v;            // Asignar el contenido de v al vector u (que cambia dinámicamente)
+v.resize(3);      // Redimensionar v: ahora tiene 3 elementos (u sigue teniendo  2)
+v[2] = u.back();  // El tercer elemento de v será igual al último de u
+~~~
+{: .cpp}
+
+
+> ## Un programa que resume lo anterior
 >
-> If the root directory of a repository contains a file called `.nojekyll`,
-> GitHub will *not* generate a website for that repository's `gh-pages` branch.
-{: .callout}
-
-We write lessons in Markdown because it's simple to learn
-and isn't tied to any specific language.
-(The ReStructured Text format popular in the Python world,
-for example,
-is a complete unknown to R programmers.)
-If authors want to write lessons in something else,
-such as [R Markdown][r-markdown],
-they must generate HTML or Markdown that [Jekyll][jekyll] can process
-and commit that to the repository.
-A [later episode]({{ page.root }}/04-formatting/) describes the Markdown we use.
-
-> ## Teaching Tools
+> ~~~
+> #include <iostream>
+> #include <vector>
+> #include <cmath> // Usaremos la función 'pow' de la bibilioteca matemática de C
 >
-> We do *not* prescribe what tools instructors should use when actually teaching:
-> the [Jupyter Notebook][jupyter],
-> [RStudio][rstudio],
-> and the good ol' command line are equally welcome up on stage.
-> All we specify is the format of the lesson notes.
-{: .callout}
-
-## Jekyll
-
-GitHub uses [Jekyll][jekyll] to turn Markdown into HTML.
-It looks for text files that begin with a header formatted like this:
-
-~~~
----
-variable: value
-other_variable: other_value
----
-...stuff in the page...
-~~~
-{: .source}
-
-and inserts the values of those variables into the page when formatting it.
-The three dashes that start the header *must* be the first three characters in the file:
-even a single space before them will make [Jekyll][jekyll] ignore the file.
-
-The header's content must be formatted as [YAML][yaml],
-and may contain Booleans, numbers, character strings, lists, and dictionaries of name/value pairs.
-Values from the header are referred to in the page as `page.variable`.
-For example,
-this page:
-
-~~~
----
-name: Science
----
-Today we are going to study {{page.name}}.
-~~~
-{: .source}
-
-is translated into:
-
-~~~
-<html>
-<body>
-<p>Today we are going to study Science.</p>
-</body>
-</html>
-~~~
-{: .source}
-
-> ## Back in the Day...
+> void print_vector_double(std::vector<double> v) {
+>   // Imprimimos el tamaño del vector y su contenido
+>   int n = v.size();
+>   std::cout << "[";
+>   if (n>0) std::cout << v[0]; // Imprimer el primer elemento
+>   for (int i=1; i<n; i++) std::cout << ',' << v[i]; // Imprimir los restantes
+>   std::cout  << "]" << std::endl;
+> }
 >
-> The previous version of our template did not rely on Jekyll,
-> but instead required authors to build HTML on their desktops
-> and commit that to the lesson repository's `gh-pages` branch.
-> This allowed us to use whatever mix of tools we wanted for creating HTML (e.g., [Pandoc][pandoc]),
-> but complicated the common case for the sake of uncommon cases,
-> and didn't model the workflow we want learners to use.
-{: .callout}
+> int main()
+> {
+>   const int n=4; // Dimensión del vector (número de elementos almacenados)
+>   std::vector<double> v(n);  // Vector formado por n números (doble precisión)
+>   for (int i=0; i<n; i++) v[i]= pow(2,i); // Cargamos los elementos: 1, 2, 4, 8
+>   print_vector_double(v); // Imprimir el resultado
+> }
+> ~~~
+> {: .cpp}
+{: .challenge}
 
-## Configuration
+  - La clase `vector` puede contener cualquier número de elementos que son (esencialmente) los atributos que contiene la clase. Los elementos pueden ser de cualquier tipo válido en C++ (enteros, números en coma flotante, caracteres,... incluso otros vectores u objetos de cualquier clase),
+  - La clase `vector` contiene una gran cantidad de métodos, mediante los cuales se accede a información de sus elementos o se manipula a los mismos. Por ejemplo, el método `size` devuelve el número de elementos contenidos en un objeto `vector` y el método `clear` elimina todos los elementos contenidos.
 
-[Jekyll][jekyll] also reads values from a configuration file called `_config.yml`,
-which are referred to in pages as `site.variable`.
-The [lesson template]({{ site.template_repo }}) does *not* include `_config.yml`,
-since each lesson will change some of its value,
-which would result in merge collisions each time the lesson was updated from the template.
-Instead,
-the [template]({{ site.template_repo }}) contains a script called `bin/lesson_initialize.py`
-which should be run *once* to create an initial `_config.yml` file
-(and a few other files as well).
-The author should then edit the values in the top half of the file.
+El siguiente programa construye un vector formado por tres números reales (en formato doble precisión), les asigna valores e imprime el resultado.
 
-## Collections
+~~~
 
-If several Markdown files are stored in a directory whose name begins with an underscore,
-[Jekyll][jekyll] creates a [collection][jekyll-collection] for them.
-We rely on this for both lesson episodes (stored in `_episodes`)
-and extra files (stored in `_extras`).
-For example,
-putting the extra files in `_extras` allows us to populate the "Extras" menu pulldown automatically.
-To clarify what will appear where,
-we store files that appear directly in the navigation bar
-in the root directory of the lesson.
-[The last episode]({{ page.root }}/03-organization/) describes these files.
+~~~
+{: .cpp}
 
-[github-importer]: https://import.github.com/
-[jekyll]: http://jekyllrb.com/
-[jekyll-collection]: https://jekyllrb.com/docs/collections/
-[jekyll-install]: https://jekyllrb.com/docs/installation/
-[jupyter]: https://jupyter.org/
-[pandoc]: https://pandoc.org/
-[r-markdown]: http://rmarkdown.rstudio.com/
-[rstudio]: https://www.rstudio.com/
-[yaml]: http://yaml.org/
+
+
+[B. Stroustrup (4th edition)]: http://www.stroustrup.com/4th.html
