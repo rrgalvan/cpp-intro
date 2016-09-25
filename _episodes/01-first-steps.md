@@ -14,7 +14,7 @@ keypoints:
 - "Podemos compilarlo con GNU/C++ mediante la orden `g++`"
 ---
 
-Este episodio se centra en la forma de compilar y ejecutar programas C++ en la shell UNIX. Aunque (en cierto modo) C++ es un superconjunto del lenguaje C, nos centraremos en la sintaxis específica de C++ e intentaremos sacar partido a las capacidades introducidas en las últimas versiones (`c++2003`, `c++2011`, `c++2014`).
+Este episodio se centra en la forma de compilar y ejecutar programas C++ en la shell UNIX. Aunque (en cierto modo) C++ es un superconjunto del lenguaje C, nos centraremos en la sintaxis específica de C++ e intentaremos sacar partido a las capacidades introducidas en las últimas versiones (`C++03`, `C++11`, `C++14`).
 
 ## Un primer programa en C++
 
@@ -75,7 +75,7 @@ Con frecuencia se utilizan editores especializados o entornos integrados para la
 >
 > ## Algunos editores y entornos integrados recomendados
 >
->  Con licencia libre, multi-plataforma (GNU/Linux, MacOS, Windows). Ordenados menor a mayor facilidad de uso (no por su potencia).
+>  Los siguientes editores tiene en común tener una licencia libre y ser multi-plataforma (GNU/Linux, MacOS, Windows). Se presentan de menor a mayor facilidad de uso (definida como pendiente inicial de la curva de aprendizaje).
 >
 > - [Code::Blocks]
 > - [Eclipse]
