@@ -9,14 +9,10 @@ objectives:
 - "Create and manipulate vector objects from the standard library"
 - "Be aware of the strengths and limitations of these vector objects"
 keypoints:
-- "Lessons are stored in Git repositories on GitHub."
-- "Lessons are written in Markdown."
-- "Jekyll translates the files in the gh-pages branch into HTML for viewing."
-- "The site's configuration is stored in _config.yml."
-- "Each page's configuration is stored at the top of that page."
-- "Groups of files are stored in collection directories whose names begin with an underscore."
-- La clase `vector` puede contener cualquier número de elementos que son (esencialmente) los atributos que contiene la clase. Los elementos pueden ser de cualquier tipo válido en C++ (enteros, números en coma flotante, caracteres,... incluso otros vectores u objetos de cualquier clase),
-- La clase `vector` contiene una gran cantidad de métodos, mediante los cuales se accede a información de sus elementos o se manipula a los mismos. Por ejemplo, el método `size` devuelve el número de elementos contenidos en un objeto `vector` y el método `clear` elimina todos los elementos contenidos.
+- Las clases en C++ son abstracciones que encapsulan datos junto a métodos (funciones) que operan sobre ellos.
+- Los objetos son variables que se crean como representación concreta de una clase.
+- La clase `vector` de la biblioteca estándar generaliza a los *arrays* 1d de C
+- La clase `vector` se usa de forma similar a los *arrays* de C pero contiene métodos que le dan una mayor potencia.
 ---
 
 Este episodio se centra en la creación y manipulación de objetos de tipo *vector*, que son instanciados a partir de la clase `std::vector` (contenida en la biblioteca estándar de C++).
@@ -184,7 +180,7 @@ mediante la fórmula de cuadratura:
 $$
 I(f) = \sum_{i=0}^2 w_i f(x_i),
 $$
-donde $\{ x_0, x_1, x_2 \} =  \{-\sqrt{3/5}, 0, \sqrt{3/5} \}$ y $\{ w_0, w_1, w_2 \} = \{5./9, 8./9, 5./9\}  $
+donde $\{ x_0, x_1, x_2 \} =  \{-\sqrt{3/5}, 0, \sqrt{3/5} \}$ y $\{ w_0, w_1, w_2 \} = \{5/9, 8/9, 5/9\}  $
 
 > ## Ejercicio 2: Fórmula de cuadratura de Gauss de tres puntos en [-1,1]
 >
@@ -215,7 +211,36 @@ donde $\{ x_0, x_1, x_2 \} =  \{-\sqrt{3/5}, 0, \sqrt{3/5} \}$ y $\{ w_0, w_1, w
 > }
 > ~~~
 > {: .cpp}
+>
+> > ## Resultado esperado
+> >
+> > ~~~
+> > Aproximación de la integral en [-1,1] de x^0: 2 (error: 0)
+> > Aproximación de la integral en [-1,1] de x^1: 0 (error: 0)
+> > Aproximación de la integral en [-1,1] de x^2: 0.666667 (error: 1.11022e-16)
+> > Aproximación de la integral en [-1,1] de x^3: 0 (error: 0)
+> > Aproximación de la integral en [-1,1] de x^4: 0.4 (error: 5.55112e-17)
+> > Aproximación de la integral en [-1,1] de x^5: 0 (error: 0)
+> > Aproximación de la integral en [-1,1] de x^6: 0.24 (error: 0.0457143)
+> > ~~~
+> {: .solution}
+>
 {: .challenge}
 
+## Puntos a favor y en contra de la clase `std::vector`
+
+La clase `std::vector` posee grandes ventajas frente a los *arrays* de
+C. Muchas de estas ventajes las cuales, como uso de iteradores o de
+funciones de la biblioteca estándar, son comunes a otros tipos de
+contenedores, como `std::list` o `std::set` y por brevedad no se han
+comentado aquí, véase por ejemplo [B. Stroustrup (4th edition)].
+
+Sin embargo, de cara su uso como objetos matemáticos o científicos, la
+clase `std::vector` presenta series limitaciones. Por ejemplo, no
+ofrecen (directamente) la posibilidad de realizar operaciones como suma de
+vectores o producto de un vector por un escalar.
+
+En la siguiente sección, estudiaremos la biblioteca Eigen que cubre
+este tipo de necesidades.
 
 [B. Stroustrup (4th edition)]: http://www.stroustrup.com/4th.html
