@@ -200,7 +200,7 @@ La sintaxis básica de C++ está basada en C con algunas extensiones, como muest
 >   for (int i=0; i<nSquares; i++)
 >     {
 >       print_square(x);
->       x = x+1;
+>       x++;
 >     }
 > }
 >
@@ -219,14 +219,17 @@ El resultado debe ser el siguiente:
 > ~~~
 > {: .output}
 
+En el programa anterior se pueden observar algunas diferencias con el clásico lenguaje C. Entre ellas, la posibilidad de declarar e inicializar las variables en el cuerpo de las funciones. Por ejemplo, en el bucle `for` anterior, se declara y se utiliza directamente la variable que actuará como contador (`int i=0`).
+
 > ## Variantes del programa anterior
 >
-> Programar una variante del programa anterior que:
+> Como ejercicio, se propone programar una variante del programa anterior que:
 >
-> - Sustituya la función `square` por $$f(x)=\cos(x^2+1)r$$
+> - Sustituya la función `square` por $$f(x)=\cos(x^2+1)$$
 > - Sustituya el bucle `for` por un bucle `while`
 >
 {: .challenge}
+
 
 [Code::Blocks]: http://www.codeblocks.org
 [Eclipse]: [Code::Blocks] http://www.eclipse.org/downloads/packages/eclipse-ide-cc-developers/marsr

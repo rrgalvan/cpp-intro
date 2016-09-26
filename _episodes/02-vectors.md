@@ -1,7 +1,7 @@
 ---
 title: "Using C++ Objects: Vectors"
-teaching: 15
-exercises: 0
+teaching: 30
+exercises: 10
 questions:
 - "How can I create a vector of real numbers in C++?"
 objectives:
@@ -94,7 +94,8 @@ A continuación, proponemos un ejercicio en el que se implementan los conceptos 
 > #include <vector>
 > #include <cmath> // Usaremos la función 'pow' de la bibilioteca matemática de C
 >
-> void print_vector_double(std::vector<double> v) {
+> void print_vector_double(std::vector<double> v)
+> {
 >   // Imprimimos el tamaño del vector y su contenido
 >   int n = v.size();
 >   std::cout << "[";
@@ -135,8 +136,29 @@ A continuación, proponemos un ejercicio en el que se implementan los conceptos 
 > > [1,2,4,8,8]
 > > ~~~
 > {: .solution}
+>
 {: .challenge}
 
+> ## Extensión: Uso de patrones
+>
+> En el programa incluído en el Ejercicio 1, se definió la función `print_vector_double`, que actúa exclusivamente sobre objetos de tipo `std::vector<double>`. Esto significa que, para imprimir otro tipo de vectores (por ejemplo, vectores de números enteros, `std::vector<int>`) será necesario definir un nueva función.
+>
+> En lugar de ello, podemos utilizar patrones (*templates*, en inglés) para definir funciones genéricas. En el ejemplo anterior, bastaría sustituir la definición de la función`print_vector_double` por la siguientes expresión:
+>
+> ~~~
+> template <class T> void print_vector<T>(std::vector<T> v)
+> ~~~
+>
+> La expresión `T` actúa como un patrón o un tipo genérico, que puede abarcar cualquier tipo concreto (como `int`, `float`, `double`, etc.).
+>
+> Podemos utilizar ahora la función explicitando su tipo (`print_vector<int>`, `print_vector<float>`, `print_vector<double>`, etc).
+>
+> Por ejemplo, en el cuerpo de la función `main` del ejemplo anterior, sustituiríamos las líneas `print_vector_double(v)` por `print_vector<double>(v)`
+>
+> **Ejercicio**: se propone modificar el ejercicio 1 para utilizar una función patrón `print_vector<T>`.
+>
+> **Nota**: Esta misma técnica se puede extender para la definición de clases genéricas en C++. De hecho, `std::vector` que ha sido introducida anteriormente es una *clase patrón* y, como hemos vistos, puede almacenar tipos de datos genéricos y, a través de sus métodos, actuar sobre los mismos. Véase [[B. Stroustrup (4th edition)]], por ejemplo, para más detalles.
+{: .challenge}
 
 > ## Otros tipos de constructores
 >
@@ -172,22 +194,30 @@ A continuación, proponemos un ejercicio en el que se implementan los conceptos 
 >
 {: .callout}
 
-En el siguiente ejercicio, se usa la clase `std::vector` para comprobar que la fórmula de cuadratura de Gauss de tres puntos tiene orden 5. En concreto, para $n=0,1,...,6$, se aproximan las integrales
+En el siguiente ejercicio, se usa la clase `std::vector` para comprobar que la fórmula de cuadratura de Gauss de tres puntos en el intervalo *[-1,1]* tiene orden *5*. En concreto, para cada *n=0,1,...,6*, se aproxima la integral
+
 $$
 \int_{-1}^1 x^n \; dx
 $$
+
 mediante la fórmula de cuadratura:
+
 $$
 I(f) = \sum_{i=0}^2 w_i f(x_i),
 $$
-donde $\{ x_0, x_1, x_2 \} =  \{-\sqrt{3/5}, 0, \sqrt{3/5} \}$ y $\{ w_0, w_1, w_2 \} = \{5/9, 8/9, 5/9\}  $
+
+donde los nodos y los pesos (elegidos de forma óptima) vienen dados por:
+
+$$\{ x_0, x_1, x_2 \} =  \{-\sqrt{3/5}, 0, \sqrt{3/5} \},$$
+
+$$\{ w_0, w_1, w_2 \} = \{5/9, 8/9, 5/9\}.  $$
 
 > ## Ejercicio 2: Fórmula de cuadratura de Gauss de tres puntos en [-1,1]
 >
 > ~~~
 > #include <iostream>
 > #include <vector>
-> #include <cmath> // Usaremos la función 'pow' de la bibilioteca matemática de C
+> #include <cmath> // Usaremos la bibilioteca matemática de C
 >
 > int main()
 > {
