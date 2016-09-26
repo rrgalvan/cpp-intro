@@ -184,7 +184,7 @@ A continuación, proponemos un ejercicio en el que se implementan los conceptos 
 > {: .bash}
 >
 >
-> En otro caso, obtendremos un error similar al siguiente:
+> *En otro caso*, obtendremos un error similar al siguiente:
 >
 > ~~~
 > error: in C++98 ‘u’ must be initialized by constructor, not by ‘{...}’
