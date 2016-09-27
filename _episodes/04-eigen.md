@@ -13,7 +13,7 @@ keypoints:
 - Dos
 ---
 
-Aunque C++ no incluye, por defecto, objetos matemáticos como vectores y matrices (pues, como vimos, la clase `std::vector` no posee operaciones matemáticas adecuadas), existen numerosas biblitecas matriciales en C++ que son muy adecuadas. Algunas de ellas muy interesantes, como  Hemos optado aquí por una de ellas ([Eigen]) por considerarla de uso sencillo y apropiada para un uso general.
+Aunque C++ no incluye, por defecto, objetos matemáticos como vectores y matrices (pues, como vimos, la clase `std::vector` no posee operaciones matemáticas adecuadas), existen numerosas biblitecas matriciales en C++ que son muy adecuadas. Hemos optado aquí por una de ellas ([Eigen]) por considerarla de uso sencillo y apropiada para un uso general.
 
 [Eigen] es una biblioteca de matrices para C++, incluyendo matrices huecas (con pocos ceros y, por tanto, menores requerimientos de memoria). Es genérica y rápida, gracias al uso de clases patrón, y fácil de usar para programadores habituados a usar C++. Incluye funcionalidades adicionales como factorización de matrices, métodos directos e iterativos para la resolución de sistemas lineales, transofmada rápida de fourier, etc.
 
@@ -86,18 +86,66 @@ En este momento, el ejemplo anterior debe estar claro, salvo algunos puntos nove
 
 ## Matrices y vectores de tamaño fijo
 
-La clase `MatrixXd` es
+Además de las de tamaño arbitrario estudiadas anteriormente, existe un segundo tipo de matrices densas: matrices (y vectores) de tamaño fijo. En ellas, la dimensión del objeto viene fijado en su diseño y no puede modificarse. Son, por tanto, menos flexibles que los objetos de tipo `MatrixXd`.
 
-> ## Extensiones
+A continuación, se usan matrices y vectores de tamaño fijo para repetir el ejemplo anteior:
+
+> ## Ejemplo 3
 >
-> Existen bibliotecas C++ orientadas a GPU (tarjetas gráficas orientadas al proceso paralelo de altas prestaciones) o bien a ordenadores con múltiples procesadores (usando OpenMP), que son muy interesantes, estables muy probadas:
-> - [ViennaCL]
-> - [Paralution]
->
-> También existe una versión de Eigen para GPU (creo que es nueva, no la he probado, ¿es estable?), llamada  [Gpumatrix]
+> ~~~
+> #include <iostream>
+> #include <Eigen/Dense>
+> using namespace Eigen;
+> using namespace std;
+> int main()
+> {
+>   Matrix3d A = Matrix3d::Random();
+>   A = (A + Matrix3d::Constant(1.2)) * 50;
+>   cout << "A =" << endl << A << endl;
+>   Vector3d v(1,2,3);
+>   cout << "A * v =" << endl << A * v << endl;
+>   cout << " (A * v)^T =" << endl << (A * v).transpose() << endl;
+> }
+> ~~~
+> {: .cpp}
 {: .callout}
 
+En este caso, se usan los tipos `Matrix3d` y `Vector3d` para representar matrices y vectores en doble precisión y de tamaño *3*. Se pueden usar los tamaños `1`, `2`, `3` y `4` y varios tipos (`d`: double, `f`: float, `i`: int,...)
+
+El usar tamaño fijo permite simplificar algo los métodos como `Random()` y `Constant()`.
+Si embargo, las matrices y vectores de tamaño fijo tienen algunas **ventajas** de mayor calado:
+
+- En primer lugar, el conocer su tamaño a la hora de la compilación permite algunas optimizaciones y, gracias a ellas, generar código más eficiente (más rápido).
+- Por otro lado, al compilador le resulta más fácil detectar errores en el momento de la compilación. Por ejemplo, multiplicar objeto de tipo `Matrix3d` por un vector de tipo `Vector2d` producirá un error de compilación. Si usamos matrices de tamaño variable, el error no aparecerá hasta la ejecución del programa y será más difícil de detectar.
+
+Sin embargo, no siempre el tamaño de la matriz es conocido en tiempo de compilación. Y además, el abusar de las matrices de tamaño fijo incrementa el tiempo de compilación y el tamaño del código ejecutable. Por ello, en la documentación de Eigen se aconseja la siguiente regla:
+
+> ## Regla de oro
+>
+> Usar matrices y vectores de tamaño fijo cuando su tamaño sea *menor o igual a `4`*.
+>
+{: .callout}
+
+## Para saber más
+
+- En realidad, las matrices de tamaño fijo y variable no son más que tipos de datos definidos a partir de la clase patrón `Matrix`.
+
+  `Matrix` es, por tanto, una de las clases centrales de la biblioteca
+  Eigen. Para más detalles, véase el
+  [tutorial de Eigen](http://eigen.tuxfamily.org/dox/group__TutorialMatrixClass.html)
+
+- Muchas de los modelos matemáticos en el
+  ámbito de las ciencias experimentales conducen a sistemas de
+  ecuaciones de gran tamaño, cuyo manejo en el orenador es
+  prohibitivo, desde el punto de vista de su almacenamiento en la
+  memoria del ordenador. Sin embargo, muchas de estas matrices son
+  huecas, es decir, una gran mayoría de sus elementos son ceros. Por
+  tanto, basta con almacenar en memoria los elementos distintos de
+  cero.
+
+  Eigen contiene una clase patrón llamada `SparseMatrix` que
+  implementa eficientemente matrices huecas. Para saber más véase la
+  [documentación oficial](http://eigen.tuxfamily.org/dox/) del código
+  de Eigen.
+
 [eigen]: http://eigen.tuxfamily.org
-[ViennaCL]: http://viennacl.sourceforge.net
-[Gpumatrix]: https://code.google.com/archive/p/gpumatrix
-[Paralution]: http://www.paralution.com
