@@ -13,7 +13,7 @@ keypoints:
 - Dos
 ---
 
-Aunque C++ no incluye, por defecto, objetos matemáticos como vectores y matrices (pues, como vimos, la clase `std::vector` no posee operaciones matemáticas adecuadas), existen numerosas biblitecas matriciales en C++ que son muy adecuadas. Hemos optado aquí por una de ellas ([Eigen]) por considerarla de uso sencillo y apropiada para un uso general.
+Aunque C++ no incluye, por defecto, objetos matemáticos como vectores y matrices (pues, como vimos, la clase `std::vector` no posee operaciones matemáticas adecuadas), existen numerosas biblitecas matriciales en C++ que son muy adecuadas. Algunas de ellas muy interesantes, como  Hemos optado aquí por una de ellas ([Eigen]) por considerarla de uso sencillo y apropiada para un uso general.
 
 [Eigen] es una biblioteca de matrices para C++, incluyendo matrices huecas (con pocos ceros y, por tanto, menores requerimientos de memoria). Es genérica y rápida, gracias al uso de clases patrón, y fácil de usar para programadores habituados a usar C++. Incluye funcionalidades adicionales como factorización de matrices, métodos directos e iterativos para la resolución de sistemas lineales, transofmada rápida de fourier, etc.
 
@@ -88,4 +88,16 @@ En este momento, el ejemplo anterior debe estar claro, salvo algunos puntos nove
 
 La clase `MatrixXd` es
 
+> ## Extensiones
+>
+> Existen bibliotecas C++ orientadas a GPU (tarjetas gráficas orientadas al proceso paralelo de altas prestaciones) o bien a ordenadores con múltiples procesadores (usando OpenMP), que son muy interesantes, estables muy probadas:
+> - [ViennaCL]
+> - [Paralution]
+>
+> También existe una versión de Eigen para GPU (creo que es nueva, no la he probado, ¿es estable?), llamada  [Gpumatrix]
+{: .callout}
+
 [eigen]: http://eigen.tuxfamily.org
+[ViennaCL]: http://viennacl.sourceforge.net
+[Gpumatrix]: https://code.google.com/archive/p/gpumatrix
+[Paralution]: http://www.paralution.com
